@@ -10,19 +10,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.dam23_24.dam2_composeejemplo1.R
 
 
 /**
@@ -45,19 +42,34 @@ fun CalcScreen() {
         ) {
 
             //Primera fila de botones del 0 al 3.
-            ScreenBtn0_3()
+            ScreenRowButtons(
+                txtBtn = listOf("0", "1", "2", "3"),
+                width = listOf(80, 80, 80, 80)
+            )
 
             //Segunda fila de botones del 4 al 7.
-            ScreenBtn4_7()
+            ScreenRowButtons(
+                txtBtn = listOf("4", "5", "6", "7"),
+                width = listOf(80, 80, 80, 80)
+            )
 
             //Tercera fila de botones: 8, 9, punto decimal (.) y Reset (C).
-            ScreenBtn8_C()
+            ScreenRowButtons(
+                txtBtn = listOf("8", "9", ".", "C"),
+                width = listOf(80, 80, 80, 80)
+            )
 
             //Cuarta fila de botones: operaciones sumar (+), restar(-) y ejecutar cálculo (=).
-            ScreenBtnOper_Res()
+            ScreenRowButtons(
+                txtBtn = listOf("+", "-", "="),
+                width = listOf(80, 80, 160)
+            )
 
             //Quinta fila de botones: operaciones sumar (*), restar(/) y borrar dígito (<).
-            ScreenBtnOper_Del()
+            ScreenRowButtons(
+                txtBtn = listOf("*", "/", "<"),
+                width = listOf(80, 80, 160)
+            )
         }
     }
 }
@@ -72,7 +84,7 @@ private fun ScreenDetailText() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 50.dp, start = 50.dp, end = 50.dp)
+            .padding(top = 50.dp, start = 50.dp, end = 50.dp, bottom = 40.dp)
     ) {
 
         Text(
@@ -101,191 +113,41 @@ private fun ScreenDetailText() {
 
 
 /**
- * Función Composable que genera el layout de los botones del 0 al 3 de la primera fila.
+ * Función Composable que genera el layout de una fila de botones.
  */
 @Composable
-private fun ScreenBtn0_3() {
-    Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 20.dp, top = 40.dp, end = 20.dp, bottom = 40.dp)
-    ) {
-        Button(
-            onClick = { /* TODO */ },
-            modifier = Modifier.size(80.dp)
-        ) {
-            Text(text = stringResource(R.string.txt_btn0), fontSize = 32.sp)
-        }
-        Button(
-            onClick = { /* TODO */ },
-            modifier = Modifier.size(80.dp)
-        ) {
-            Text(text = stringResource(R.string.txt_btn1), fontSize = 32.sp)
-        }
-        Button(
-            onClick = { /* TODO */ },
-            modifier = Modifier.size(80.dp)
-        ) {
-            Text(text = stringResource(R.string.txt_btn2), fontSize = 32.sp)
-        }
-        Button(
-            onClick = { /* TODO */ },
-            modifier = Modifier.size(80.dp)
-        ) {
-            Text(text = stringResource(R.string.txt_btn3), fontSize = 32.sp)
-        }
-    }
-}
-
-
-/**
- * Función Composable que genera el layout de los botones del 4 al 7 de la segunda fila.
- */
-@Composable
-fun ScreenBtn4_7() {
+private fun ScreenRowButtons(
+    txtBtn: List<String>,
+    width: List<Int>
+) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 20.dp, top = 0.dp, end = 20.dp, bottom = 40.dp)
     ) {
-        Button(
-            onClick = { /* TODO */ },
-            modifier = Modifier.size(80.dp)
-        ) {
-            Text(text = stringResource(R.string.txt_btn4), fontSize = 32.sp)
-        }
-        Button(
-            onClick = { /* TODO */ },
-            modifier = Modifier.size(80.dp)
-        ) {
-            Text(text = stringResource(R.string.txt_btn5), fontSize = 32.sp)
-        }
-        Button(
-            onClick = { /* TODO */ },
-            modifier = Modifier.size(80.dp)
-        ) {
-            Text(text = stringResource(R.string.txt_btn6), fontSize = 32.sp)
-        }
-        Button(
-            onClick = { /* TODO */ },
-            modifier = Modifier.size(80.dp)
-        ) {
-            Text(text = stringResource(R.string.txt_btn7), fontSize = 32.sp)
+        for (i in txtBtn.indices) {
+            ScreenButton(
+                txtBtn = txtBtn[i],
+                width = width[i]
+            )
         }
     }
 }
 
 
 /**
- * Función Composable que genera el layout de los botones 8, 9, punto decimal (.) y
- * reset (C) de la tercera fila.
+ * Función Composable que genera el layout de un botón.
  */
 @Composable
-fun ScreenBtn8_C() {
-    Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 20.dp, top = 0.dp, end = 20.dp, bottom = 40.dp)
+private fun ScreenButton(
+    txtBtn: String,
+    width: Int
+) {
+    Button(
+        onClick = { /* TODO */ },
+        modifier = Modifier.width(width.dp).height(80.dp)
     ) {
-        Button(
-            onClick = { /* TODO */ },
-            modifier = Modifier.size(80.dp)
-        ) {
-            Text(text = stringResource(R.string.txt_btn8), fontSize = 32.sp)
-        }
-        Button(
-            onClick = { /* TODO */ },
-            modifier = Modifier.size(80.dp)
-        ) {
-            Text(text = stringResource(R.string.txt_btn9), fontSize = 32.sp)
-        }
-        Button(
-            //El punto decimal se trata con el número 10 en el método tecleaDigito del objeto calc.
-            onClick = { /* TODO */ },
-            modifier = Modifier.size(80.dp)
-        ) {
-            Text(text = stringResource(R.string.txt_btnDec), fontSize = 32.sp)
-        }
-        Button(
-            onClick = { /* TODO */ },
-            modifier = Modifier.size(80.dp)
-        ) {
-            Text(text = stringResource(R.string.txt_btnCE), fontSize = 32.sp)
-        }
-    }
-}
-
-
-/**
- * Función Composable que genera el layout de los botones de los operadores sumar (+),
- * restar (-) y resultado (=) de la cuarta fila.
- */
-@Composable
-fun ScreenBtnOper_Res() {
-    Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 20.dp, top = 0.dp, end = 20.dp, bottom = 40.dp)
-    ) {
-        Button(
-            onClick = { /* TODO */ },
-            modifier = Modifier.size(80.dp)
-        ) {
-            Text(text = stringResource(R.string.txt_btnSuma), fontSize = 32.sp)
-        }
-        Button(
-            onClick = { /* TODO */ },
-            modifier = Modifier.size(80.dp)
-        ) {
-            Text(text = stringResource(R.string.txt_btnResta), fontSize = 32.sp)
-        }
-        Button(
-            onClick = { /* TODO */ },
-            modifier = Modifier
-                .width(160.dp)
-                .height(80.dp)
-        ) {
-            Text(text = stringResource(R.string.txt_btnResult), fontSize = 32.sp)
-        }
-    }
-}
-
-
-/**
- * Función Composable que genera el layout de los botones de los operadores multiplicar (*), dividir (/) y
- * borrar dígito (<) de la última fila.
- */
-@Composable
-fun ScreenBtnOper_Del() {
-    Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 20.dp, top = 0.dp, end = 20.dp, bottom = 40.dp)
-    ) {
-        Button(
-            onClick = { /* TODO */ },
-            modifier = Modifier.size(80.dp)
-        ) {
-            Text(text = stringResource(R.string.txt_btnMul), fontSize = 32.sp)
-        }
-        Button(
-            onClick = { /* TODO */ },
-            modifier = Modifier.size(80.dp)
-        ) {
-            Text(text = stringResource(R.string.txt_btnDiv), fontSize = 32.sp)
-        }
-        Button(
-            onClick = { /* TODO */ },
-            modifier = Modifier
-                .width(160.dp)
-                .height(80.dp)
-        ) {
-            Text(text = stringResource(R.string.txt_btnBorrar), fontSize = 32.sp)
-        }
+        Text(text = txtBtn, fontSize = 32.sp)
     }
 }
